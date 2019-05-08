@@ -1,0 +1,50 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="container">
+
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" #name="ngModel" 
+        [ngModel]="usuario.name" required>
+      <mat-error *ngIf="!name.valid && (name.touched || name.dirty)">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" name="email" #email="ngModel" 
+        [ngModel]="usuario.email" required email>
+      <mat-error *ngIf="!email.valid && (email.touched || email.dirty)">Email is required</mat-error>
+    </mat-form-field>
+
+    <div class="flex-wrapper" ngModelGroup="addressInfo">
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="Zip code" name="zipcode" #zipcode="ngModel" 
+          [ngModel]="usuario.zipcode" (blur)="buscarCEP(zipcode.value, form)" required>
+        <mat-error *ngIf="!zipcode.valid && (zipcode.touched || zipcode.dirty)">Zip code is invalid.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field style="width: 65%;">
+        <input matInput placeholder="Address" name="address" #address="ngModel" [ngModel]="usuario.address" required>
+        <mat-error *ngIf="!address.valid && (address.touched || address.dirty)">Address is invalid.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="Number" name="number" #number="ngModel" [ngModel]="usuario.number" required>
+        <mat-error *ngIf="!number.valid && (number.touched || number.dirty)">Number is invalid.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="City" name="city" #city="ngModel" [ngModel]="usuario.city" required>
+        <mat-error *ngIf="!city.valid && (city.touched || city.dirty)">City is invalid.</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="State" name="state" #state="ngModel" [ngModel]="usuario.state" required>
+        <mat-error *ngIf="!state.valid && (state.touched || state.dirty)">State is invalid.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+
+    <app-form-debugger [form]="form"></app-form-debugger>
+  </div>
+</form>

@@ -1,0 +1,24 @@
+<form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+
+    <mat-form-field style="width: 20%;">
+      <input matInput placeholder="Name" name="name" formControlName="name" required>
+      <!-- <mat-error *ngIf="!name.valid && (name.touched || name.dirty)">Name is required</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field style="width: 20%;">
+      <input matInput placeholder="Description" name="description" formControlName="description" required>
+      <!-- <mat-error *ngIf="!email.valid && (email.touched || email.dirty)">Email is required</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field style="width: 20%;">
+      <input matInput type="number" placeholder="Value" name="value" formControlName="value" required>
+      <!-- <mat-error *ngIf="!zipcode.valid && (zipcode.touched || zipcode.dirty)">Zip code is invalid.</mat-error> -->
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!serviceForm.valid">Submit</button>
+    </div>
+    
+  </div>
+</form>

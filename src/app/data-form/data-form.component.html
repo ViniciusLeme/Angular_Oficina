@@ -1,0 +1,57 @@
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" formControlName="name" required>
+      <mat-error 
+        *ngIf="this.cadastroForm.get('name').invalid && this.cadastroForm.get('name').hasError('required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="this.cadastroForm.get('name').invalid && !this.cadastroForm.get('name').hasError('required')">
+        <mat-error 
+          *ngIf="this.cadastroForm.get('name').hasError('forbiddenName')">
+          {{cadastroForm.get('name').getError('forbiddenName').value}} is not allowed
+        </mat-error>
+        <mat-error 
+          *ngIf="this.cadastroForm.get('name').hasError('pattern')">
+          Pattern not allowed
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" name="email" formControlName="email" required>
+      <mat-error *ngIf="this.cadastroForm.get('email').invalid && this.cadastroForm.get('email').hasError('required')">Email is required</mat-error>
+    </mat-form-field>
+
+    <div class="flex-wrapper" formGroupName="addressInfo">
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="Zip code" (blur)="buscarCEP()" name="zipcode" formControlName="zipcode" required>
+        <!-- <mat-error *ngIf="!zipcode.valid && (zipcode.touched || zipcode.dirty)">Zip code is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 65%;">
+        <input matInput placeholder="Address" name="address" formControlName="address" required>
+        <!-- <mat-error *ngIf="!address.valid && (address.touched || address.dirty)">Address is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="Number" name="number" formControlName="number" required>
+        <!-- <mat-error *ngIf="!number.valid && (number.touched || number.dirty)">Number is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="City" name="city" formControlName="city" required>
+        <!-- <mat-error *ngIf="!city.valid && (city.touched || city.dirty)">City is invalid.</mat-error> -->
+      </mat-form-field>
+      
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="State" name="state" formControlName="state" required>
+        <!-- <mat-error *ngIf="!state.valid && (state.touched || state.dirty)">State is invalid.</mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!cadastroForm.valid">Submit</button>
+    </div>
+  </div>
+</form>

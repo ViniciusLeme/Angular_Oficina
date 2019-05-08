@@ -1,0 +1,33 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="container">
+
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" #name="ngModel" [ngModel]="owner.name" required>
+      <mat-error *ngIf="!name.valid && (name.touched || name.dirty)">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="CPF" name="cpf" #cpf="ngModel" [ngModel]="owner.cpf" required>
+      <mat-error *ngIf="!cpf.valid && (cpf.touched || cpf.dirty)">CPF is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" disabled="false" #birthDate="ngModel"
+        [ngModel]="owner.birthDate" name="birthDate" required readonly>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+      <mat-error *ngIf="!birthDate.valid && (birthDate.touched || birthDate.dirty)">Birth Date is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-radio-group aria-label="Select your gender" #gender="ngModel" [ngModel]="owner.gender" name="gender" required>
+      <mat-radio-button value="F">F</mat-radio-button>
+      <mat-radio-button value="M">M</mat-radio-button>
+    </mat-radio-group>
+
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+
+  </div>
+</form>

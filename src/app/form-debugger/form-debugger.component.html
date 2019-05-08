@@ -1,0 +1,14 @@
+<div class="f-debugger">
+  <mat-card>
+    Form inválido: {{form.invalid}}
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card>
+    Form submetido: {{form.submitted}}
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card>
+    Valores: 
+    <pre>{{form.value | json}}</pre>
+  </mat-card>
+</div>

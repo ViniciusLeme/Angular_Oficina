@@ -1,0 +1,39 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <mat-form-field>
+      <input matInput placeholder="firstName" name="firstName" formControlName="firstName">
+      <!-- <mat-error *ngIf="!name.valid && (name.touched || name.dirty)">Name is required</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="lastName" name="lastName" formControlName="lastName">
+      <!-- <mat-error *ngIf="!email.valid && (email.touched || email.dirty)">Email is required</mat-error> -->
+    </mat-form-field>
+
+    <div class="flex-wrapper" formGroupName="address">
+      <mat-form-field style="width: 30%;">
+        <input matInput placeholder="Zip code" name="zip" formControlName="zip">
+        <!-- <mat-error *ngIf="!zipcode.valid && (zipcode.touched || zipcode.dirty)">Zip code is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 65%;">
+        <input matInput placeholder="Address" name="address" formControlName="street">
+        <!-- <mat-error *ngIf="!address.valid && (address.touched || address.dirty)">Address is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 45%;">
+        <input matInput placeholder="City" name="city" formControlName="city">
+        <!-- <mat-error *ngIf="!city.valid && (city.touched || city.dirty)">City is invalid.</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 45%;">
+        <input matInput placeholder="State" name="state" formControlName="state">
+        <!-- <mat-error *ngIf="!state.valid && (state.touched || state.dirty)">State is invalid.</mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+    </div>
+  </div>
+</form>
